@@ -48,6 +48,7 @@ def schedule_cost(population, elite):
         conflict = 0
         for i in range(0, n - 1):
             for j in range(i + 1, n):
+                # print(p[i].courseId, p[j].courseId)
                 # check flight in same time and same room 
                 if p[i].roomId == p[j].roomId and p[i].weekDay == p[j].weekDay and p[i].slot == p[j].slot:
                     # print("ini konfliknya", p[i].roomId,  p[j].roomId)

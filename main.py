@@ -1,5 +1,5 @@
 import prettytable 
-
+from datetime import datetime, timedelta
 from schedule import Schedule
 from genetic import GeneticOptimize
 
@@ -12,8 +12,17 @@ def vis(schedule):
     """
     # 7 ke kanan
     # 7 kebawah
-    col_labels = ['jam/slot', '7', '8', '9', '10', '11','12','13']
-    table_vals = [[i + 4, '', '', '', '', '','','',] for i in range(7)]
+
+    start_time = datetime.strptime("07:00", "%H:%M")  # Set the initial start time
+    col_labels = ['kelas/jam']
+
+    increment = timedelta(minutes=50)  # Set the increment value
+
+    for _ in range(90):
+        col_labels.append(start_time.strftime("%H:%M"))  # Append the current time to the list
+        start_time += increment  # Increment the time by 50 minutes
+
+    table_vals = [[i + 4] + ['']*90 for i in range(7)]
 
     table = prettytable.PrettyTable(col_labels, hrules=prettytable.ALL)
 
